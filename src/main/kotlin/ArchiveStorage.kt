@@ -1,5 +1,5 @@
 class ArchiveStorage<T> : Storage<T> {
-    var watch = 1 // переменная для понимания в какой части программы работает пользователь
+    var watch = Watch.ARCHIVE // переменная для понимания в какой части программы работает пользователь
     private val archives = mutableListOf<Archive>()
     override fun addArchive(archiveName: String): Archive {
         archives.add(Archive(archiveName, mutableListOf()))
@@ -17,15 +17,11 @@ class ArchiveStorage<T> : Storage<T> {
     override fun getArchives(): MutableList<Archive> {
         return archives
     }
-    internal fun <E> archiveSize(list: MutableList<E>):Int {
-        if (list.isEmpty()) {
-            return 1
-        } else {
-            return archives.size + 1
-        }
+    internal fun <E> listSize(list: MutableList<E>):Int {
+        return list.size + 1 // +1, потому что в интерфейсе всегда на 1 больше элементов, чем размер списка
     }
     /*
-    Хотел записать все в один метод, но что-то не получается (
+    Хотел записать все в один метод, но что-то не получается :(
     fun displayTheScreen(list: MutableList<T> ) {
         when (list) {
             is MutableList<Archive> -> println("Список архивов:\n0. Создать архив")

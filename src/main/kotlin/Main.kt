@@ -5,11 +5,11 @@ fun main(args: Array<String>) {
     val logic = InputLogic()
     while (true) {
         when (storage.watch) { // Переменная storage.watch указывает в какой части программы находится пользователь
-            1 -> {
+            Watch.ARCHIVE -> {
                 storage.displayTheScreenForArchive(storage.getArchives())
                 logic.displayArchive(storage)
             }
-            2 -> {
+            Watch.NOTES -> {
                 logic.displayNote(storage)
             }
             else -> break
